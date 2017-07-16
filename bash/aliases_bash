@@ -1,0 +1,206 @@
+#!/bin/bash
+
+export CLASSPATH=".:/usr/local/lib/antlr-4.0-complete.jar:$CLASSPATH"
+export this_file_name="aliases_bash"
+
+#loading mac-and-ubuntu-only stuff:
+
+#if [ "$(uname)" == "Darwin" ]; then
+  #source ${dropbox}/config/bash/aliases_bash_macos
+#else
+  #source ${dropbox}/config/bash/aliases_bash_ubuntu
+#fi
+
+#screen dimensions
+
+export currentScreenX=`xrandr | fgrep '*' | cut -d' ' -f4 | cut -d'x' -f1`
+export currentScreenY=`xrandr | fgrep '*' | cut -d' ' -f4 | cut -d'x' -f2`
+
+make.center.terminal() {
+wmctrl -r `echo ${PWD##*/} | sed 's/kalnar/~/'` -e 1,50,40,`szam ${currentScreenX}-100 | cut -d'.' -f1`,700
+}
+
+make.left.terminal() {
+wmctrl -r `echo ${PWD##*/} | sed 's/kalnar/~/'` -e 1,10,40,`szam 0.45*${currentScreenX} | cut -d'.' -f1`,710
+}
+
+make.right.terminal() {
+wmctrl -r `echo ${PWD##*/} | sed 's/kalnar/~/'` -e 1,`szam 0.45*${currentScreenX}-10 | cut -d'.' -f1`,40,`szam 0.55*${currentScreenX} | cut -d'.' -f1`,710
+}
+
+
+if [[ ${HOSTNAME} = 'kalnar-Latitude-E4310' ]]; then
+  export home_other="/mnt/kalnar-ssd-big"
+  export dropbox_other="/mnt/kalnar-ssd-big/Dropbox"
+  alias cdo='cd ${home_other}'
+  alias godo='cd ${home_other}/Dropbox'
+fi
+
+#kalnar-PC:
+
+if [[ ${HOSTNAME} = 'kalnar-PC' ]]; then
+
+  alias gotofiles='cd /mnt/9eb4f083-0ba8-4829-a201-5ad62ef5c8a1/'
+
+  alias gotonewtorrent='cd /mnt/9eb4f083-0ba8-4829-a201-5ad62ef5c8a1/torrentDownload/new'
+
+  alias eclipse="/home/kalnar/programming+/java/eclipse/eclipse"
+
+
+fi
+
+
+#common aliases:
+
+
+#navigation:
+alias ..="cd .."
+alias ...="cd ../.."
+
+#favorite places:
+alias d="cd ${dropbox}"
+alias dl="cd ~/Downloads"
+
+#helper stuff:
+runOrFocus() {
+  sh -c "if test $(wmctrl -vxa $1 2>&1 | wc -l) -ne 7; then $1; echo "$1"; fi"
+}
+
+mkvTomp4() {
+  avconv -i $1 -codec copy $2
+}
+
+alias nospaceunderscore="rename 's/ /_/g' *"
+alias nospace="rename 's/ /./g' *"
+
+alias tolowercase="rename 'y/A-Z/a-z/' *"
+
+if [ "$(uname)" == "Darwin" ]; then
+  alias l="ls -ohgG | cut -c 16- | tail -n +2"
+else
+  alias  l="ls -o -g -h --color=always | sed -re 's/^[^ ][^ ]* //'"
+fi
+
+alias g++="g++ --std=c++0x"
+
+alias freespace="df -kh ."
+
+#functions:
+
+
+calculateExpression() {
+  #do things with parameters like $1 such as
+  echo "$1" | bc
+}
+
+alias szam="calculateExpression"
+
+kopi() {
+  if [ "$(uname)" == "Darwin" ]; then
+    allvariables="$@"
+    printf "$allvariables" | pbcopy
+  else
+    allvariables="$@"
+    printf "$allvariables" | xsel --clipboard
+  fi
+}
+
+daysTillDate() {
+  echo $(expr '(' $(date -d $1 +%s) - $(date +%s) + 86399 ')' / 86400) " days until deadline"
+}
+
+alias kopiwd="kopi \`pwd\`"
+
+Set() {
+  cp ${dropbox}/config/bash/${this_file_name} ${dropbox}/config/bash/bash_aliases.backup
+  echo -e "alias $1='cd `pwd`'\n" | sed "s@${dropbox}@\${dropbox}@" >> ${dropbox}/config/bash/${this_file_name}
+  #sed -i "s@${dropbox}@\${dropbox}@" ${dropbox}/config/bash/bash_aliases
+  less ${dropbox}/config/bash/${this_file_name} | tail -2
+  source ${dropbox}/config/bash/${this_file_name}
+}
+
+lastInLs() {
+  if [ $# -eq 0 ]; then
+    ls | tail -1
+  elif [[ "$1"=~'^[0-9]$' ]]; then
+    ls | tail -${1} | head -1
+  else
+    echo "use an integer arguement or use without argument"
+  fi
+}
+
+
+firstInLs() {
+  if [ $# -eq 0 ]; then
+    ls | head -1
+  elif [[ "$1"=~'^[0-9]$' ]]; then
+    ls | head -${1} | tail -1
+  else
+    echo "use an integer arguement or use without argument"
+  fi
+}
+
+
+Vimquick() {
+  vim `date "+%Y%m%d_"`$1_`date "+%H%M"`$2
+}
+
+alias alc="find . -type f -maxdepth 1 -exec printf '\n=============== {} ===============\n\n' \; -exec cat {} \;"
+alias alc.r="find . -type f -exec printf '\n=============== {} ===============\n\n' \; -exec cat {} \;"
+
+
+# end of functions
+
+alias androidfolder='cd /run/user/1000/gvfs/'
+
+bind -m vi-insert "\C-l":clear-screen
+
+# first and last
+
+alias lsfirst="firstInLs"
+alias lslast="lastInLs"
+
+#loading mac-and-ubuntu-only stuff:
+
+if [ "$(uname)" == "Darwin" ]; then
+  source ${dropbox}/config/bash/aliases_bash_macos
+else
+  source ${dropbox}/config/bash/aliases_bash_ubuntu
+fi
+
+# dropbox folder aliases for easy navigation:
+
+alias gotodropbox='cd $dropbox'
+
+alias briss="java -jar ${dropbox}/software/linux/briss-0.9/briss-0.9.jar"
+
+alias gotoconfig='cd ${dropbox}/config/'
+
+alias gotoprogramming='cd ${dropbox}/projects/programming'
+
+alias gotofrenchbooks='cd ${dropbox_other}/books/language.textbooks/francia/current'
+
+alias gotobashconfig='cd ${dropbox}/config/bash'
+
+alias gotokalnarapps-dict='cd ${dropbox}/projects/programming/java/dictionaries/kalnar.dictionaries'
+
+alias gotosurfingkeys='cd ${dropbox}software/chrome/extensions/surfing.keys/Surfingkeys'
+
+alias gotofrench.words='cd ${dropbox}notes/french/word.learning'
+
+alias gotoandroidbook='cd /mnt/kalnar-ssd-big/Dropbox/books/programming/android/android_alapu_szoftverfejlesztes.bme'
+
+alias gotosurfingkeys='cd ${dropbox}projects/programming/chrome/surfing.keys/forked/Surfingkeys'
+
+alias gotoandroid='cd ${dropbox}projects/programming/android'
+
+alias gotocv='cd ${dropbox}documents/CV'
+
+alias gotokalnarapps='cd ${dropbox}projects/programming/kalnarapps'
+
+alias n='cd ${dropbox}notes'
+
+alias n.android='cd ${dropbox}notes/programming/android'
+
+alias n.desktop='cd ${dropbox}notes/programming/desktop'
+

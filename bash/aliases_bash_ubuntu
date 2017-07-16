@@ -1,0 +1,76 @@
+#!/bin/bash
+
+op() {
+	if ! [[ -z ${2+x} ]]; then
+		$1 $2 > /dev/null 2>&1 &
+	else
+		gnome-open $1 > /dev/null 2>&1 &
+	fi
+}
+
+alias chromenew="google-chrome --new-window"
+
+alias ptoday="date +%Y%m%d"
+
+alias ctoday="cd `ptoday`"
+
+alias mktoday="mkdir `ptoday`"
+
+alias t="task"
+
+alias screenoff="xset dpms force off"
+
+androstudio() {
+	if [ -z "$1" ]; then
+		/home/kalnar/software/ide/android-studio/bin/studio.sh &> /dev/null &
+	else
+		/home/kalnar/software/ide/android-studio/bin/studio.sh ${1} &> /dev/null &
+	fi
+}
+
+loread() {
+	if ! [[ -z ${1+x} ]]; then
+		lowriter --view $1 > /dev/null 2>&1 &
+	else
+		echo "1st argument was not provided"
+	fi
+}
+
+tl() {
+	if [ -z "$1" ]; then
+		task due.before:1d
+	else
+		task add project:today due.before:tomorrow "$@"
+	fi
+}
+
+tprog() {
+	if [ -z "$1" ]; then
+		task project:programming
+	else
+		task add project:programming "$@"
+	fi
+}
+
+weather() {
+	if [ -z "$1" ]; then
+		curl wttr.in/Lyon
+	else
+		curl wttr.in/${1}
+	fi
+}
+
+ghistory() {
+	greppingToClipboard "$1" ${dropbox}/history/laptop/*
+}
+
+vicd() {
+	local dst="$(command vifm --choose-dir -)"
+	if [ -z "$dst" ]; then
+		echo 'Directory picking cancelled/failed'
+		return 1
+	fi
+	cd "$dst"
+}
+
+alias add-to-calendar="gcalcli --calendar 'kalnarobert@gmail.com' quick"

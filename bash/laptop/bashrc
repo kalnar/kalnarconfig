@@ -1,0 +1,11 @@
+
+#setting dropbox environmental variable
+#export dropbox=/home/kalnar/Dropbox/
+export dropbox=/home/kalnar/pCloud/
+
+# history file:
+export HISTFILE=${dropbox}/history/laptop/`date +%Y%m%d-%H%M%S`.hist
+
+source ${dropbox}/config/bash/bashrc
+
+source ${dropbox}/config/bash/bash_functions.sh

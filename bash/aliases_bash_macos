@@ -1,0 +1,7 @@
+#!/bin/bash
+
+alias itunesU='cd /Users/kalnar/Music/iTunes/iTunes\ Media/iTunes\ U'
+op() {
+  open $1
+}
+
