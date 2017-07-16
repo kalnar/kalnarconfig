@@ -1,0 +1,31 @@
+
+#header_large {
+  display: none !important;
+}
+
+aside {
+  display: none !important;
+}
+
+div.conjugBloc, div.conjugBloc p, div.tempsBloc, div.tempsBloc p {
+  padding: 2px;
+  margin: 0;
+  width: inherit;
+  margin-right: 5px;
+}
+
+#headerVerbe {
+  margin: auto;
+  width: 630px;
+}
+
+footer {
+  display: none !important;
+}
+
+input.btn {
+  display: none !important;
+}
+
+
+/* leconjugueur.lefigaro.fr */
