@@ -182,8 +182,6 @@ alias gotofrenchbooks='cd ${dropbox_other}/books/language.textbooks/francia/curr
 
 alias gotobashconfig='cd ${dropbox}/config/bash'
 
-alias gotokalnarapps-dict='cd ${dropbox}/projects/programming/java/dictionaries/kalnar.dictionaries'
-
 alias gotosurfingkeys='cd ${dropbox}software/chrome/extensions/surfing.keys/Surfingkeys'
 
 alias gotofrench.words='cd ${dropbox}notes/french/word.learning'
@@ -203,4 +201,6 @@ alias n='cd ${dropbox}notes'
 alias n.android='cd ${dropbox}notes/programming/android'
 
 alias n.desktop='cd ${dropbox}notes/programming/desktop'
+
+alias gotokalnarapps-dict-desktop='cd ${dropbox}projects/programming/kalnarapps/kalnar.dictionaries-desktop'
 
