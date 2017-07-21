@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Eclipse-jee
+Comment=IDE for java-jee development
+TryExec=/home/kalnar/software/ide/eclipse-jee/eclipse
+Exec=/home/kalnar/software/ide/eclipse-jee/eclipse
+Icon=/home/kalnar/software/ide/eclipse-jee/icon.xpm
+Type=Application
+Categories=Development
+StartupNotify=true
+Keywords=java;IDE;

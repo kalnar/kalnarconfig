@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Briss
+Comment=Pdf crop java application
+TryExec=java -jar ${dropbox}software/linux/briss-0.9/briss-0.9.jar
+Exec=java -jar ${dropbox}software/linux/briss-0.9/briss-0.9.jar
+Icon=${dropbox}software/linux/briss-0.9/briss.icon
+Terminal=false
+Type=Application
+StartupNotify=false
+Keywords=pdf;crop;
