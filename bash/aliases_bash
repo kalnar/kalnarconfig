@@ -3,53 +3,6 @@
 export CLASSPATH=".:/usr/local/lib/antlr-4.0-complete.jar:$CLASSPATH"
 export this_file_name="aliases_bash"
 
-#loading mac-and-ubuntu-only stuff:
-
-#if [ "$(uname)" == "Darwin" ]; then
-  #source ${dropbox}/config/bash/aliases_bash_macos
-#else
-  #source ${dropbox}/config/bash/aliases_bash_ubuntu
-#fi
-
-#screen dimensions
-
-export currentScreenX=`xrandr | fgrep '*' | cut -d' ' -f4 | cut -d'x' -f1`
-export currentScreenY=`xrandr | fgrep '*' | cut -d' ' -f4 | cut -d'x' -f2`
-
-make.center.terminal() {
-wmctrl -r `echo ${PWD##*/} | sed 's/kalnar/~/'` -e 1,50,40,`szam ${currentScreenX}-100 | cut -d'.' -f1`,700
-}
-
-make.left.terminal() {
-wmctrl -r `echo ${PWD##*/} | sed 's/kalnar/~/'` -e 1,10,40,`szam 0.45*${currentScreenX} | cut -d'.' -f1`,710
-}
-
-make.right.terminal() {
-wmctrl -r `echo ${PWD##*/} | sed 's/kalnar/~/'` -e 1,`szam 0.45*${currentScreenX}-10 | cut -d'.' -f1`,40,`szam 0.55*${currentScreenX} | cut -d'.' -f1`,710
-}
-
-
-if [[ ${HOSTNAME} = 'kalnar-Latitude-E4310' ]]; then
-  export home_other="/mnt/kalnar-ssd-big"
-  export dropbox_other="/mnt/kalnar-ssd-big/Dropbox"
-  alias cdo='cd ${home_other}'
-  alias godo='cd ${home_other}/Dropbox'
-fi
-
-#kalnar-PC:
-
-if [[ ${HOSTNAME} = 'kalnar-PC' ]]; then
-
-  alias gotofiles='cd /mnt/9eb4f083-0ba8-4829-a201-5ad62ef5c8a1/'
-
-  alias gotonewtorrent='cd /mnt/9eb4f083-0ba8-4829-a201-5ad62ef5c8a1/torrentDownload/new'
-
-  alias eclipse="/home/kalnar/programming+/java/eclipse/eclipse"
-
-
-fi
-
-
 #common aliases:
 
 
