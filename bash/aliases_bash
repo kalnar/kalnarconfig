@@ -123,8 +123,6 @@ fi
 
 # dropbox folder aliases for easy navigation:
 
-alias gotodropbox='cd $dropbox'
-
 alias briss="java -jar ${dropbox}/software/linux/briss-0.9/briss-0.9.jar"
 
 alias gotoconfig='cd ${dropbox}/config/'
@@ -134,10 +132,6 @@ alias gotoprogramming='cd ${dropbox}/projects/programming'
 alias gotofrenchbooks='cd ${dropbox_other}/books/language.textbooks/francia/current'
 
 alias gotobashconfig='cd ${dropbox}/config/bash'
-
-alias gotosurfingkeys='cd ${dropbox}software/chrome/extensions/surfing.keys/Surfingkeys'
-
-alias gotofrench.words='cd ${dropbox}notes/french/word.learning'
 
 alias gotoandroidbook='cd /mnt/kalnar-ssd-big/Dropbox/books/programming/android/android_alapu_szoftverfejlesztes.bme'
 
@@ -156,4 +150,12 @@ alias n.android='cd ${dropbox}notes/programming/android'
 alias n.desktop='cd ${dropbox}notes/programming/desktop'
 
 alias gotokalnarapps-dict-desktop='cd ${dropbox}projects/programming/kalnarapps/kalnar.dictionaries-desktop'
+
+alias gotoblog='cd ${dropbox}projects/blogs/jekyll'
+
+alias n.wishes='cd ${dropbox}notes/wishes'
+
+alias n.gamedev='cd ${dropbox}notes/programming/game-dev'
+
+alias n.todo='cd ${dropbox}notes/to.do'
 
